@@ -18,3 +18,8 @@
   apt:
     name: mariadb-server
     state: present
+
+- name: INSTALL | Install PyMySQL dependency
+  pip:
+    name: PyMySQL
+    state: present

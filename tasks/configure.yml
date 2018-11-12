@@ -1,4 +1,39 @@
 ---
+- name: CONFIGURE | Ensure Mariadb server is started
+  systemd:
+    name: mariadb
+    state: started
+
+- name: CONFIGURE | Update mysql root password for all root accounts
+  become: yes
+  become_user: root
+  mysql_user:
+    name: root
+    host: "{{ item }}"
+    password: "{{ mariadb_root_passwd }}"
+    login_unix_socket: "{{ mariadb_unix_socket }}"
+    check_implicit_admin: yes
+    priv: "*.*:ALL,GRANT"
+  with_items:
+    - "{{ ansible_hostname }}"
+    - 127.0.0.1
+    - ::1
+    - localhost
+
+- name: CONFIGURE | Change set root user .my.cnf
+  template:
+    src: root.my.cnf.j2
+    dest: /root/.my.cnf
+    owner: root
+    group: root
+    mode: 0600
+
 - name: CONFIGURE | Create users
-  shell: |
-    echo 'CREATE USER "{{ mariadb_db_user }}"@"{{ mariadb_db_host }}" IDENTIFIED BY "{{ mariadb_db_passwd }}"; GRANT ALL PRIVILEGES ON *.* TO "{{ mariadb_db_user}}"@"{{ mariadb_db_host }}"; FLUSH PRIVILEGES;' | /usr/bin/mysql -u root
+  mysql_user:
+    # login_user: root
+    name: "{{ mariadb_db_user }}"
+    password: "{{ mariadb_db_passwd }}"
+    encrypted: no
+    priv: '*.*:ALL'
+    login_unix_socket: "{{ mariadb_unix_socket }}"
+    state: present

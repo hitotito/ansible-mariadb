@@ -3,11 +3,15 @@
 mariadb_group: mariadb
 mariadb_user: mariadb
 
+mariadb_unix_socket: /var/run/mysqld/mysqld.sock
+
 mariadb_consul_service_enabled: false
 mariadb_consul_service_name: mariadb
 mariadb_port: 3306
 
 # TOOD - database configuration
+mariadb_root_passwd: my_milk_shake_is_better
+
 mariadb_db_user: phabricator
 mariadb_db_host: localhost
 mariadb_db_passwd: phabricator_test
