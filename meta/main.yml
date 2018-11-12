@@ -1,0 +1,14 @@
+---
+galaxy_info:
+  role_name: mariadb
+  author: Hitoshi Okonogi
+  description: role to install & manage mariadb
+  license: MIT
+  min_ansible_version: 2.2
+  platforms:
+    - name: Debian
+      versions:
+        - stretch
+  galaxy_tags:
+    - mariadb
+    - sql

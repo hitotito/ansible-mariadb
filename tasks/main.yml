@@ -1,0 +1,16 @@
+---
+- name: install mariadb
+  import_tasks: install.yml
+  tags:
+    - install
+
+- name: configure mariadb
+  import_tasks: configure.yml
+  tags:
+    - configure
+
+- name: install consul service definition
+  import_tasks: consul.yml
+  when: mariadb_consul_service_enabled
+  tags:
+    - consul_definition

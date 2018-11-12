@@ -1,0 +1,4 @@
+---
+- name: CONFIGURE | Create users
+  shell: |
+    echo 'CREATE USER "{{ mariadb_db_user }}"@"{{ mariadb_db_host }}" IDENTIFIED BY "{{ mariadb_db_passwd }}"; GRANT ALL PRIVILEGES ON *.* TO "{{ mariadb_db_user}}"@"{{ mariadb_db_host }}"; FLUSH PRIVILEGES;' | /usr/bin/mysql -u root

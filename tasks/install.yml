@@ -1,0 +1,20 @@
+---
+#TODO - break these down into 
+# common
+# server
+# client
+- name: INSTALL | Ensure mariadb group exists
+  group:
+    name: "{{ mariadb_group }}"
+    state: present
+
+- name: INSTALL | Ensure mariadb user exists
+  user:
+    name: "{{ mariadb_user }}"
+    group: "{{ mariadb_group }}"
+    state: present
+
+- name: INSTALL | Install mariadb-server package
+  apt:
+    name: mariadb-server
+    state: present

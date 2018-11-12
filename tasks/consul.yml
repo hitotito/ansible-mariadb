@@ -1,0 +1,11 @@
+---
+- name: CONSUL | Call hitotito.consul service tasks
+  include_role:
+    name: hitotito.consul
+    tasks_from: service
+    private: yes
+  vars:
+    consul_service_name: "{{ mariadb_consul_service_name }}"
+    consul_service_check: "script"
+    consul_service_check_name: "Check-service is up"
+    consul_service_check_script_args: ["{{ consul_bin_dir }}/check_systemd_active.py", 'mariadb.service'] # TODO
