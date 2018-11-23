@@ -16,10 +16,15 @@
 
 - name: INSTALL | Install mariadb-server package
   apt:
-    name: mariadb-server
+    name: "{{ item }}"
     state: present
+  with_items:
+    - default-libmysqlclient-dev
+    - mariadb-server
 
 - name: INSTALL | Install PyMySQL dependency
   pip:
-    name: PyMySQL
+    name: "{{ item }}"
     state: present
+  with_items:
+    - MySQL-python
