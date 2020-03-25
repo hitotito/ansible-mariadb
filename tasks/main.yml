@@ -9,6 +9,12 @@
   tags:
     - configure
 
+- name: install developement config
+  import_tasks: development.yml
+  when: mariadb_dev_cnf_enabled
+  tags:
+    - development
+
 - name: install consul service definition
   import_tasks: consul.yml
   when: mariadb_consul_service_enabled

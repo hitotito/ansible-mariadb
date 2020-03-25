@@ -12,7 +12,20 @@ mariadb_port: 3306
 # TOOD - database configuration
 mariadb_root_passwd: my_milk_shake_is_better
 
-mariadb_db_user: phabricator
-mariadb_db_host: localhost
-mariadb_db_passwd: phabricator_test
+mariadb_db_dbs: []
 
+mariadb_db_user: mariadb
+mariadb_db_host: localhost
+mariadb_db_passwd: mariadbpassword
+
+mariadb_phpdriver: false
+
+mariadb_dev_cnf_enabled: false
+# list of maps - ansible will install .my.cnf in user's home dir
+# mariadb_dev_system_users should be in following structure:
+#  mariadb_dev_cnfs:
+#   - system_user: <linux_username>
+#     user: <default database username>
+#     passwd: <default database user passwd>
+#     db: <default database>
+mariadb_dev_cnfgs: []

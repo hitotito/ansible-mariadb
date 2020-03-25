@@ -28,6 +28,13 @@
     group: root
     mode: 0600
 
+- name: CONFIGURE | Create databases
+  mysql_db:
+    name: "{{ item }}"
+    login_unix_socket: "{{ mariadb_unix_socket }}"
+    state: present
+  loop: "{{ mariadb_db_dbs }}"
+
 - name: CONFIGURE | Create users
   mysql_user:
     # login_user: root

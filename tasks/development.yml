@@ -1,0 +1,8 @@
+---
+- name: DEVELOPMENT | Install .my.cnf file
+  template:
+    src: user.my.cnf.j2
+    dest: "/home/{{ item.system_user }}/.my.cnf"
+    mode: 0600
+    owner: "{{ item.system_user }}"
+  loop: "{{ mariadb_dev_cnfs }}"

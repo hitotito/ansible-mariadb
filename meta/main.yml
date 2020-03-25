@@ -4,11 +4,12 @@ galaxy_info:
   author: Hitoshi Okonogi
   description: role to install & manage mariadb
   license: MIT
-  min_ansible_version: 2.2
+  min_ansible_version: 2.5
   platforms:
     - name: Debian
       versions:
         - stretch
+        - buster
   galaxy_tags:
     - mariadb
     - sql
